@@ -28,7 +28,7 @@ const blogRoute = require("./routes/blogpost");
 app.use("/blogPost", blogRoute);
 
 data = {
-  msg: "Welcome on DevStack Blog App development YouTube video series",
+  msg: "Welcome on OnomDev Blog App",
   info: "This is a root endpoint",
   Working: "Documentations of other endpoints will be release soon :)",
   request:
@@ -37,6 +37,6 @@ data = {
 
 app.route("/").get((req, res) => res.json(data));
 
-app.listen(port, "0.0.0.0", () =>
+app.listen(port, "herokuapp", () =>
   console.log(`welcome your listinnig at port ${port}`)
 );
