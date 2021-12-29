@@ -19,6 +19,9 @@
     "path": "^0.12.7",
     "yarn": "^1.22.17"
   },
+  "engines": {
+    "node": "v16.13.0"
+  },
   "keywords": [],
   "author": "onomdev",
   "license": "ISC"
