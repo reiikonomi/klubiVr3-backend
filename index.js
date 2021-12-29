@@ -5,11 +5,15 @@ const port = process.env.PORT || 5000;
 const app = express();
 var cors = require("cors");
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  process.env.MONGO_URI ||
+    "mongodb+srv://rei:pussyhunter69@cluster0.evcnj.mongodb.net/blogs?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const connection = mongoose.connection;
 connection.once("open", () => {
@@ -37,6 +41,4 @@ data = {
 
 app.route("/").get((req, res) => res.json(data));
 
-app.listen(port, () =>
-  console.log(`welcome your listinnig at port ${port}`)
-);
+app.listen(port, () => console.log(`welcome your listinnig at port ${port}`));
