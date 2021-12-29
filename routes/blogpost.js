@@ -54,17 +54,23 @@ router.route("/Add").post(middleware.checkToken, (req, res) => {
 });
 
 router.route("/getOwnBlog").get(middleware.checkToken, (req, res) => {
-  BlogPost.find({ username: req.decoded.username }, (err, result) => {
-    if (err) return res.json(err);
-    return res.json({ data: result });
-  });
+  BlogPost.find(
+    { username: req.decoded.username }.sort({ createdAt: -1 }),
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json({ data: result });
+    }
+  );
 });
 
 router.route("/getOtherBlog").get(middleware.checkToken, (req, res) => {
-  BlogPost.find({ username: { $ne: req.decoded.username } }, (err, result) => {
-    if (err) return res.json(err);
-    return res.json({ data: result });
-  });
+  BlogPost.find(
+    { username: { $ne: req.decoded.username } }.sort({ createdAt: -1 }),
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json({ data: result });
+    }
+  );
 });
 
 router.route("/delete/:id").delete(middleware.checkToken, (req, res) => {
@@ -81,7 +87,32 @@ router.route("/delete/:id").delete(middleware.checkToken, (req, res) => {
       return res.json("Blog not deleted");
     }
   );
-  
 });
+
+// sortRecord = (req, res, next) => {
+//   try {
+//     BlogPost.find({})
+//       .sort({ createdAt: -1 })
+//       .exec((err, docs) => {
+//         if (err) {
+//           responseObj = {
+//             status: "error",
+//             msg: "Error occured.",
+//             body: err,
+//           };
+//           res.status(500).send(responseObj);
+//         } else {
+//           responseObj = {
+//             status: "success",
+//             msg: "Fetch record",
+//             body: docs,
+//           };
+//           res.status(200).send(responseObj);
+//         }
+//       });
+//   } catch (error) {
+//     console.log("Error", error);
+//   }
+// };
 
 module.exports = router;
