@@ -4,6 +4,29 @@ const mongoose = require("mongoose");
 const port = process.env.PORT || 5000;
 const app = express();
 var cors = require("cors");
+const MongoClient = require("mongodb").MongoClient;
+const assert = require("assert");
+
+const agg = [
+  {
+    $sort: {
+      createdAt: -1,
+    },
+  },
+];
+
+MongoClient.connect(
+  "mongodb+srv://rei:pussyhunter69@cluster0.evcnj.mongodb.net/blogs?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (connectErr, client) {
+    assert.equal(null, connectErr);
+    const coll = client.db("blogs").collection("blogposts");
+    coll.aggregate(agg, (cmdErr, result) => {
+      assert.equal(null, cmdErr);
+    });
+    client.close();
+  }
+);
 
 mongoose.connect(
   process.env.MONGO_URI ||
@@ -35,8 +58,7 @@ data = {
   msg: "Welcome on OnomDev Blog App",
   info: "This is a root endpoint",
   Working: "",
-  request:
-    "",
+  request: "",
 };
 
 app.route("/").get((req, res) => res.json(data));
