@@ -34,7 +34,7 @@ app.use("/blogPost", blogRoute);
 data = {
   msg: "Welcome on OnomDev Blog App",
   info: "This is a root endpoint",
-  Working: "Documentations of other endpoints will be release soon :)",
+  Working: "",
   request:
     "",
 };
