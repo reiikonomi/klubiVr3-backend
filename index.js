@@ -7,26 +7,26 @@ var cors = require("cors");
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
 
-const agg = [
-  {
-    $sort: {
-      createdAt: -1,
-    },
-  },
-];
+// const agg = [
+//   {
+//     $sort: {
+//       createdAt: -1,
+//     },
+//   },
+// ];
 
-MongoClient.connect(
-  "mongodb+srv://rei:pussyhunter69@cluster0.evcnj.mongodb.net/blogs?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  function (connectErr, client) {
-    assert.equal(null, connectErr);
-    const coll = client.db("blogs").collection("blogposts");
-    coll.aggregate(agg, (cmdErr, result) => {
-      assert.equal(null, cmdErr);
-    });
-    client.close();
-  }
-);
+// MongoClient.connect(
+//   "mongodb+srv://rei:pussyhunter69@cluster0.evcnj.mongodb.net/blogs?retryWrites=true&w=majority",
+//   { useNewUrlParser: true, useUnifiedTopology: true },
+//   function (connectErr, client) {
+//     assert.equal(null, connectErr);
+//     const coll = client.db("blogs").collection("blogposts");
+//     coll.aggregate(agg, (cmdErr, result) => {
+//       assert.equal(null, cmdErr);
+//     });
+//     client.close();
+//   }
+// );
 
 mongoose.connect(
   process.env.MONGO_URI ||
