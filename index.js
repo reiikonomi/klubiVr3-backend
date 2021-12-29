@@ -37,6 +37,6 @@ data = {
 
 app.route("/").get((req, res) => res.json(data));
 
-app.listen(port, "herokuapp", () =>
+app.listen(port, () =>
   console.log(`welcome your listinnig at port ${port}`)
 );
