@@ -23,7 +23,7 @@ const BlogPost = Schema({
     default: 0,
   },
   createdAt: {
-    type: Number,
+    type: String,
     default: Date.now(),
   }
 });
