@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const config = require("./config");
 
 let checkToken = (req, res, next) => {
-  let token = req.headers["authorization"];
+  let token = req.headers["Authorization"];
   console.log(token);
   token = token.slice(7, token.length);
   if (token) {
