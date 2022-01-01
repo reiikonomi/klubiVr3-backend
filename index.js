@@ -34,7 +34,7 @@ const blogRoute = require("./routes/blogpost");
 app.use("/blogPost", blogRoute);
 
 data = {
-  msg: "Welcome on OnomDev Blog App",
+  msg: "",
   info: "This is a root endpoint",
   Working: "",
   request: "",

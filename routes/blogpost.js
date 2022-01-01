@@ -81,27 +81,27 @@ router.route("/delete/:id").delete(middleware.checkToken, (req, res) => {
 });
 
 // added
-router.route("/comment").put(middleware.checkToken, (req, res) => {
-  const comment = {
-    text: req.body.text,
-    postedBy: req.decoded.username,
-  };
-  BlogPost.findByIdAndUpdate(
-    req.params.id,
-    {
-      $push: { comments: comment },
-    },
-    {
-      new: true,
-    }
-  ).exec((err, result) => {
-    if (err) {
-      return res.status(422).json({ error: err });
-    } else {
-      res.json(result);
-    }
-  });
-});
+// router.route("/comment").put(middleware.checkToken, (req, res) => {
+//   const comment = {
+//     text: req.body.text,
+//     postedBy: req.decoded.username,
+//   };
+//   BlogPost.findByIdAndUpdate(
+//     req.params.id,
+//     {
+//       $push: { comments: comment },
+//     },
+//     {
+//       new: true,
+//     }
+//   ).exec((err, result) => {
+//     if (err) {
+//       return res.status(422).json({ error: err });
+//     } else {
+//       res.json(result);
+//     }
+//   });
+// });
 
 // router.put('/comment',requireLogin,(req,res)=>{
 //   const comment = {
