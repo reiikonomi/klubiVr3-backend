@@ -51,23 +51,17 @@ router.route("/Add").post(middleware.checkToken, (req, res) => {
 });
 
 router.route("/getOwnBlog").get(middleware.checkToken, (req, res) => {
-  BlogPost.find(
-    { username: req.decoded.username },
-    (err, result) => {
-      if (err) return res.json(err);
-      return res.json({ data: result });
-    }
-  ).sort({ createdAt: -1 });
+  BlogPost.find({ username: req.decoded.username }, (err, result) => {
+    if (err) return res.json(err);
+    return res.json({ data: result });
+  }).sort({ createdAt: -1 });
 });
 
 router.route("/getOtherBlog").get(middleware.checkToken, (req, res) => {
-  BlogPost.find(
-    { username: { $ne: req.decoded.username } },
-    (err, result) => {
-      if (err) return res.json(err);
-      return res.json({ data: result });
-    }
-  ).sort({ createdAt: -1 });
+  BlogPost.find({ username: { $ne: req.decoded.username } }, (err, result) => {
+    if (err) return res.json(err);
+    return res.json({ data: result });
+  }).sort({ createdAt: -1 });
 });
 
 router.route("/delete/:id").delete(middleware.checkToken, (req, res) => {
@@ -85,6 +79,50 @@ router.route("/delete/:id").delete(middleware.checkToken, (req, res) => {
     }
   );
 });
+
+// added
+router.route("/comment").put(middleware.checkToken, (req, res) => {
+  const comment = {
+    text: req.body.text,
+    postedBy: req.decoded.username,
+  };
+  BlogPost.findByIdAndUpdate(
+    req.params.id,
+    {
+      $push: { comments: comment },
+    },
+    {
+      new: true,
+    }
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err });
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+// router.put('/comment',requireLogin,(req,res)=>{
+//   const comment = {
+//       text:req.body.text,
+//       postedBy:req.user._id
+//   }
+//   Post.findByIdAndUpdate(req.body.postId,{
+//       $push:{comments:comment}
+//   },{
+//       new:true
+//   })
+//   .populate("comments.postedBy","_id name")
+//   .populate("postedBy","_id name")
+//   .exec((err,result)=>{
+//       if(err){
+//           return res.status(422).json({error:err})
+//       }else{
+//           res.json(result)
+//       }
+//   })
+// })
 
 // sortRecord = (req, res, next) => {
 //   try {
