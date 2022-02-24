@@ -8,8 +8,7 @@ const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
 
 mongoose.connect(
-  process.env.MONGO_URI ||
-    "mongodb+srv://rei:pussyhunter69@cluster0.evcnj.mongodb.net/blogs?retryWrites=true&w=majority",
+  process.env.MONGO_URI
   {
     useNewUrlParser: true,
     useCreateIndex: true,
