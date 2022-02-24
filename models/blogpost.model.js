@@ -23,12 +23,12 @@ const BlogPost = Schema({
     default: 0,
   },
   // added 
-  // comments: [
-  //   {
-  //     text: String,
-  //     postedBy: { type: ObjectId, ref: "Profile" },
-  //   },
-  // ],
+  comments: [
+    {
+      text: String,
+      postedBy: { type: ObjectId, ref: "Profile" },
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
