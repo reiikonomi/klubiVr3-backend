@@ -1,7 +1,7 @@
 # klubiVr3-backend
 
-Ketu ndodhet kodi i back-end te projektit KlubiVr3
+Here is the back-end code of KlubiVr3.
 
-## Me poshte linku per kodin e aplikacionit
+## Below is the link of the application repo with more information.
 
-- [Me kliko per te pare kodin e aplikacionit](https://github.com/onomdev/klubiVr3)
+- [Click me](https://github.com/onomdev/klubiVr3)
